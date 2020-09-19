@@ -60,6 +60,13 @@ endif
 
 " Now the actual plugins:
 
+
+" Search pattern all
+Plug 'dyng/ctrlsf.vim'
+
+" Simple Fold
+Plug 'tmhedberg/SimpylFold'
+
 " Override configs by directory
 Plug 'arielrossanigo/dir-configs-override.vim'
 " Code commenter
@@ -108,6 +115,8 @@ Plug 'jeetsukumaran/vim-indentwise'
 Plug 'sheerun/vim-polyglot'
 " Ack code search (requires ack installed in the system)
 Plug 'mileszs/ack.vim'
+" Pydoc
+Plug 'fs111/pydoc.vim'
 " Paint css colors with the real color
 Plug 'lilydjwg/colorizer'
 " Window chooser
@@ -381,6 +390,19 @@ nmap ,D :tab split<CR>:call jedi#goto()<CR>
 nmap ,r :Ack 
 nmap ,wr :execute ":Ack " . expand('<cword>')<CR>
 
+" ctrlsf finder ------------------------------
+let g:ctrlsf_auto_focus = {
+    \ "at": "start"
+    \ }
+nmap ,l <Plug>CtrlSFPrompt
+vmap ,vl <Plug>CtrlSFVwordPath
+vmap ,el <Plug>CtrlSFVwordExec
+nmap ,wl <Plug>CtrlSFCwordPath<CR>
+nmap ,bl <Plug>CtrlSFCCwordPath<CR>
+nmap ,ll <Plug>CtrlSFPwordPath<CR>
+nnoremap <F5> :CtrlSFToggle<CR>
+inoremap <F6> <Esc>:CtrlSFToggle<CR>
+
 " Window Chooser ------------------------------
 
 " mapping
@@ -425,7 +447,7 @@ endif
 " Airline ------------------------------
 
 let g:airline_powerline_fonts = 0
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'papercolor'
 let g:airline#extensions#whitespace#enabled = 0
 
 " Fancy Symbols!!
@@ -459,3 +481,6 @@ endif
 if filereadable(expand(custom_configs_path))
   execute "source " . custom_configs_path
 endif
+
+
+inoremap jj <Esc>
